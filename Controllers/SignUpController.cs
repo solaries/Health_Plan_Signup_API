@@ -47,6 +47,11 @@ namespace health_plan_signup_api.Controllers
                 message.Message = "Invalid phone number"; 
                 return message;
             }
+            if(request.Sandbox_Key.Trim().Length < 1){ 
+                message.Response = "Failed";
+                message.Message = "Invalid sandbox key"; 
+                return message;
+            } 
             return message;
             
         }

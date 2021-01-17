@@ -173,4 +173,33 @@ public class TestClass{
         ResponsMessage response = signUp.NewPlanSubscription(request);
         Assert.Equal("true",(response.Message != "Invalid phone number" ? "true":"false")); 
     }
+
+
+
+
+    [Fact]
+    public void SandboxKeyNotEntered(){
+        SignUpController signUp = new SignUpController();
+        RequestMessage request = new RequestMessage();
+        request.Email="simple@yahoo.com"; 
+        request.FirstName="simple"; 
+        request.LastName="simple";
+        request.Phone="12345678901";
+        request.Sandbox_Key="";
+        ResponsMessage response = signUp.NewPlanSubscription(request);
+        Assert.Equal("true",(response.Response=="Failed" && response.Message == "Invalid sandbox key" ? "true":"false")); 
+    }
+
+    [Fact]
+    public void SandboxKeyEntered(){
+        SignUpController signUp = new SignUpController();
+        RequestMessage request = new RequestMessage();
+        request.Email="simple@yahoo.com"; 
+        request.FirstName="simple";
+        request.LastName="simple";
+        request.Phone="123456789012";
+        request.Sandbox_Key="123";
+        ResponsMessage response = signUp.NewPlanSubscription(request);
+        Assert.Equal("true",(response.Message != "Invalid sandbox key" ? "true":"false")); 
+    } 
 }
