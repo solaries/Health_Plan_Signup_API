@@ -26,14 +26,26 @@ namespace health_plan_signup_api.Controllers
         [HttpPost]
         public ResponsMessage NewPlanSubscription([FromBody] RequestMessage request)
         { 
-            ResponsMessage message = new ResponsMessage();
-
-            message.Response = "ok";
-            message.Message = "ok";
-
+            ResponsMessage message = new ResponsMessage();   
             if(request.Email.Trim().Length < 5 || request.Email.Trim().Length > 50){
                 message.Response = "Failed";
                 message.Message = "Invalid email address"; 
+                return message;
+            }
+            if(request.FirstName.Trim().Length < 1 || request.FirstName.Trim().Length > 20){
+                message.Response = "Failed";
+                message.Message = "Invalid first name"; 
+                return message;
+            }
+            if(request.LastName.Trim().Length < 1 || request.LastName.Trim().Length > 20){
+                message.Response = "Failed";
+                message.Message = "Invalid last name"; 
+                return message;
+            }
+            if(request.Phone.Trim().Length != 11){
+                message.Response = "Failed";
+                message.Message = "Invalid phone number"; 
+                return message;
             }
             return message;
             
