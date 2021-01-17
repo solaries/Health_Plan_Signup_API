@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿ 
+using Microsoft.AspNetCore.Mvc;  
+using health_plan_signup_api.Models;
+using health_plan_signup_api.data;
+using System;
 
 namespace health_plan_signup_api.Controllers
 {
@@ -52,6 +51,12 @@ namespace health_plan_signup_api.Controllers
                 message.Message = "Invalid sandbox key"; 
                 return message;
             } 
+            Enrollees enrollee = new Enrollees();
+            if(enrollee.get_enrollees($" where email = '{request.Email}'").Count ==1){
+                message.Response = "Failed";
+                message.Message = "Enrollee data already exists"; 
+                return message;
+            }
             return message;
             
         }

@@ -1,9 +1,9 @@
-using Xunit;
-using health_plan_signup_api;
-using health_plan_signup_api.Controllers;
-using System.Collections.Generic;
-
-public class TestClass{
+using Xunit; 
+using health_plan_signup_api.Controllers; 
+using health_plan_signup_api.Models;
+using System;
+using health_plan_signup_api.data;
+public class Tests{
     // [Fact]
     // public void PasingWetherTest(){
     //     SignUpController signUp = new SignUpController();
@@ -197,9 +197,31 @@ public class TestClass{
         request.Email="simple@yahoo.com"; 
         request.FirstName="simple";
         request.LastName="simple";
-        request.Phone="123456789012";
+        request.Phone="12345678901";
         request.Sandbox_Key="123";
         ResponsMessage response = signUp.NewPlanSubscription(request);
         Assert.Equal("true",(response.Message != "Invalid sandbox key" ? "true":"false")); 
+    } 
+
+    [Fact]
+    public void ValidateUniqueEmailCheckInDatabase(){
+        SignUpController signUp = new SignUpController();
+        RequestMessage request = new RequestMessage();
+        request.Email="simple@yahoo.com"; 
+        request.FirstName="simple";
+        request.LastName="simple";
+        request.Phone="12345678901";
+        request.Sandbox_Key="123";
+        Enrollees enrollee = new Enrollees();
+        if(enrollee.get_enrollees($" where email = '{request.Email}'").Count ==0){
+            Enrollees_Table enrolleesData = new Enrollees_Table();
+            enrolleesData.Email="simple@yahoo.com"; 
+            enrolleesData.First_name="simple";
+            enrolleesData.Last_name="simple";
+            enrolleesData.Phone="12345678901";   
+            enrollee.add_enrollees(enrolleesData);   
+        }
+        ResponsMessage response = signUp.NewPlanSubscription(request);
+        Assert.Equal("true",(response.Response=="Failed" && response.Message == "Enrollee data already exists" ? "true":"false")); 
     } 
 }

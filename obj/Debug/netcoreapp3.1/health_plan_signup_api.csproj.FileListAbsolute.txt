@@ -102,3 +102,8 @@
 /home/sphinx/code/Health_Plan_Signup_API/obj/Debug/netcoreapp3.1/health_plan_signup_api.dll
 /home/sphinx/code/Health_Plan_Signup_API/obj/Debug/netcoreapp3.1/health_plan_signup_api.pdb
 /home/sphinx/code/Health_Plan_Signup_API/obj/Debug/netcoreapp3.1/health_plan_signup_api.genruntimeconfig.cache
+/home/sphinx/code/Health_Plan_Signup_API/bin/Debug/netcoreapp3.1/Google.Protobuf.dll
+/home/sphinx/code/Health_Plan_Signup_API/bin/Debug/netcoreapp3.1/MySql.Data.dll
+/home/sphinx/code/Health_Plan_Signup_API/bin/Debug/netcoreapp3.1/System.Configuration.ConfigurationManager.dll
+/home/sphinx/code/Health_Plan_Signup_API/bin/Debug/netcoreapp3.1/System.Security.Cryptography.ProtectedData.dll
+/home/sphinx/code/Health_Plan_Signup_API/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
