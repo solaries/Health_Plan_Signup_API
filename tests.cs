@@ -224,4 +224,17 @@ public class Tests{
         ResponsMessage response = signUp.NewPlanSubscription(request);
         Assert.Equal("true",(response.Response=="Failed" && response.Message == "Enrollee data already exists" ? "true":"false")); 
     } 
+
+    [Fact]
+    public void SubmitPost(){
+        SignUpController signUp = new SignUpController();
+        RequestMessage request = new RequestMessage();
+        request.Email="simple12@yahoo.com"; 
+        request.FirstName="simple";
+        request.LastName="simple";
+        request.Phone="12345678901";
+        request.Sandbox_Key="549f9b59171286db90c74122e8dac90f"; 
+        ResponsMessage response = signUp.NewPlanSubscription(request);
+        Assert.Equal("true",(response.Response=="Successful" && response.Message == "Enrollee data captured successfully" ? "true":"false")); 
+    } 
 }
