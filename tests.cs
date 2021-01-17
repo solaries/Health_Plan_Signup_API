@@ -215,6 +215,7 @@ public class Tests{
         Enrollees enrollee = new Enrollees();
         if(enrollee.get_enrollees($" where email = '{request.Email}'").Count ==0){
             Enrollees_Table enrolleesData = new Enrollees_Table();
+// please either try to check this email for every test or delete it's record from the database            
             enrolleesData.Email="simple@yahoo.com"; 
             enrolleesData.First_name="simple";
             enrolleesData.Last_name="simple";
@@ -233,7 +234,7 @@ public class Tests{
         request.FirstName="simple";
         request.LastName="simple";
         request.Phone="12345678901";
-        request.Sandbox_Key="549f9b59171286db90c74122e8dac90f"; 
+        request.Sandbox_Key="2"; 
         ResponsMessage response = signUp.NewPlanSubscription(request);
         Assert.Equal("true",(response.Response=="Successful" && response.Message == "Enrollee data captured successfully" ? "true":"false")); 
     } 
